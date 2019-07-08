@@ -1,0 +1,31 @@
+{
+  "name": "babel-plugin-transform-taro-import",
+  "version": "0.1.0",
+  "description": "用于Taro工程运行前转换代码中对于“@tarojs/taro”的引用",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "",
+    "test:demo": "npx babel demo/demo.umd.js --out-file demo/dist/demo-compiled.umd.js --plugins=babel-plugin-transform-taro-import"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/golddream-y/babel-plugin-transform-taro-import.git"
+  },
+  "keywords": [
+    "taro"
+  ],
+  "author": "Erwin",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/golddream-y/babel-plugin-transform-taro-import/issues"
+  },
+  "homepage": "https://github.com/golddream-y/babel-plugin-transform-taro-import#readme",
+  "devDependencies": {
+    "@babel/core": "7.4.4",
+    "babel-plugin-transform-taro-import": "*"
+  },
+  "files": [
+    "demo",
+    "src"
+  ]
+}
