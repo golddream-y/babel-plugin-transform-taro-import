@@ -16,7 +16,7 @@
 
 如上（引自：[Taro 多端开发实现原理与项目实战](https://juejin.im/book/5b73a131f265da28065fb1cd)），Taro有一部分的端能力API是通过编译时初始化到Taro的核心库上的。所以在编译前你的库引用的是“*@tarojs/taro*”,编译后（如果你的平台是微信小程序）引用的应该是是“*@tarojs/taro-weapp*”。但Taro目前编译工具并未对三方库对其核心包的引用做编译，所以我们如果自己的库引用了Taro的核心库且使用的一些运行时的API，就需要该插件。  
 
-### 例子
+### 效果
 
 
 #### `{ "pileName": "alipay" }`
@@ -75,3 +75,52 @@ swan      ->         '@tarojs/taro-swan',
 alipay    ->         '@tarojs/taro-alipay',
 tt             ->         '@tarojs/taro-tt'
 ```
+
+### 例子
+
+详见工程下的demo。
+
+- `.babelrc`
+
+  ```
+  {
+    "plugins": [
+      [
+        "babel-plugin-transform-taro-import",
+        {
+          "pileName": "alipay"
+        }
+      ]
+    ]
+  }
+  ```
+
+- `babel.config.js` （babel@7+）
+
+  ``` javascript
+  module.exports = function (api) {
+      // demo的量级不需要缓存
+      api.cache(false);
+  
+      /**
+       * 获取当前编译平台
+       */
+      const getCurrentCompilePile = function () {
+          return process.env.npm_lifecycle_event ? process.env.npm_lifecycle_event.replace('demo:', '') : null;
+      };
+  
+      const plugins = [
+          [
+              "babel-plugin-transform-taro-import",
+              {
+                  "pileName": getCurrentCompilePile()
+              }
+          ]
+      ];
+  
+      return {
+          plugins
+      };
+  };
+  ```
+

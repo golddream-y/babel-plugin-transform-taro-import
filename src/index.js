@@ -63,7 +63,7 @@ exports.default = function ({types: t}) {
     return {
         visitor: {
             StringLiteral(path, {opts}) {
-                if (path.node.value === pkgNameTaros[0]) {
+                if (pkgNameTaros.indexOf(path.node.value) !== -1) {
                     // commonjs require引用：判断是否为函数调用，且调用者名为“require”
                     if (isCJS(path.parentPath)) {
                         path.node.value = getImportName(opts.pileName);
