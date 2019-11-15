@@ -5,3 +5,4 @@ coverage
 *.log
 .vscode
 .idea
+demo/dist
